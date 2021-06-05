@@ -2,41 +2,26 @@ import React, { useEffect, useState } from "react";
 
 import Tasks from "../Tasks/Tasks";
 import NewTask from "../NewTask/NewTask";
+import useFetch from "../../hooks/use-fetch";
 
 const TasksRoot = () => {
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
   const [tasks, setTasks] = useState([]);
+  const { isLoading, error, sendRequest: fetchTasks } = useFetch();
 
-  const fetchTasks = async (taskText) => {
-    setIsLoading(true);
-    setError(null);
-    try {
-      const response = await fetch(
-        "https://reactdata-ccb9d-default-rtdb.firebaseio.com/tasks.json"
-      );
-
-      if (!response.ok) {
-        throw new Error("Request failed!");
-      }
-
-      const data = await response.json();
-
+  useEffect(() => {
+    const applyMapping = (data) => {
       const loadedTasks = [];
 
       for (const taskKey in data) {
         loadedTasks.push({ id: taskKey, text: data[taskKey].text });
       }
-
       setTasks(loadedTasks);
-    } catch (err) {
-      setError(err.message || "Something went wrong!");
-    }
-    setIsLoading(false);
-  };
+    };
 
-  useEffect(() => {
-    fetchTasks();
+    const requestConfig = {
+      url: "https://reactdata-ccb9d-default-rtdb.firebaseio.com/tasks.json",
+    };
+    fetchTasks(requestConfig, applyMapping);
   }, []);
 
   const taskAddHandler = (task) => {
