@@ -1,0 +1,13 @@
+.invalid {
+  background-color: #f7c6c6;
+}
+
+.error-style {
+  color: #dc1b1b;
+  font-size: 0.8rem;
+}
+
+.disabled {
+  background-color: gray;
+  border-color: gray;
+}
