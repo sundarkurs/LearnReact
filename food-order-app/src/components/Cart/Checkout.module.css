@@ -1,7 +1,7 @@
 .form {
   margin: 1rem 0;
-  height: 19rem;
-  overflow: auto;
+  /* height: 19rem; */
+  overflow: scroll;
 }
 
 .control {
@@ -50,4 +50,8 @@
 .actions .button {
   background-color: #8a2b06;
   color: white;
+}
+
+.error {
+  color: red;
 }

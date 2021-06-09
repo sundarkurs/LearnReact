@@ -6,6 +6,7 @@ export const AppConstatns = {
 export const CartConstants = {
   ADD: "ADD",
   REMOVE: "REMOVE",
+  CLEAR: "CLEAR"
 };
 
 export const MealsConstants = {

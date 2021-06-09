@@ -1,30 +1,50 @@
+import { useRef, useState } from "react";
 import classes from "./Checkout.module.css";
 const Checkout = (props) => {
+  const nameRef = useRef();
+  const cityRef = useRef();
+  const mobileRef = useRef();
+  const [error, setError] = useState("");
+
   const handleSubmit = (event) => {
     event.preventDefault();
 
+    const enteredName = nameRef.current.value;
+    const enteredCity = cityRef.current.value;
+    const enteredMobile = mobileRef.current.value;
+
+    if (
+      enteredName.trim() === "" ||
+      enteredCity.trim() === "" ||
+      enteredMobile.trim() === ""
+    ) {
+      setError("Please enter all the fields.");
+      return;
+    }
+
     const contact = {
-      name: "sundar",
-      city: "bangalore",
-      mobile: "9972032425",
+      name: enteredName,
+      city: enteredCity,
+      mobile: enteredMobile,
     };
 
     props.onCheckout(contact);
   };
   return (
-    <form onSubmit={handleSubmit}>
+    <form className={classes.form} onSubmit={handleSubmit}>
       <div className={classes.control}>
-        <label htmlFor="name">Name</label>
-        <input type="text" id="name"></input>
+        <label htmlFor="name">Name *</label>
+        <input ref={nameRef} type="text" id="name"></input>
       </div>
       <div className={classes.control}>
-        <label htmlFor="name">City</label>
-        <input type="text" id="city"></input>
+        <label htmlFor="city">City *</label>
+        <input ref={cityRef} type="text" id="city"></input>
       </div>
       <div className={classes.control}>
-        <label htmlFor="name">Mobile</label>
-        <input type="text" id="mobile"></input>
+        <label htmlFor="mobile">Mobile *</label>
+        <input ref={mobileRef} type="text" id="mobile"></input>
       </div>
+      <div className={classes.error}>{error}</div>
       <div className={classes.actions}>
         <button type="submit" onClick={props.onClose}>
           Close

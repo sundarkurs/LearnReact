@@ -72,6 +72,10 @@ const removeItemFromTheCart = (state, id) => {
   return { items: updatedCartItems, totalPrice: newTotalPrice };
 };
 
+const clearCart = (state) => {
+  return { items: [], totalPrice: 0 };
+};
+
 const cartReducer = (state, action) => {
   if (action.type == cartConst.ADD) {
     console.log(action.item);
@@ -80,6 +84,10 @@ const cartReducer = (state, action) => {
 
   if (action.type == cartConst.REMOVE) {
     return removeItemFromTheCart(state, action.id);
+  }
+
+  if (action.type == cartConst.CLEAR) {
+    return clearCart(state);
   }
 
   return defaultCartState;
@@ -99,6 +107,10 @@ const CartContextProvider = (props) => {
     dispathCartAction({ type: cartConst.ADD, item: item });
   };
 
+  const handleClearCart = () => {
+    dispathCartAction({ type: cartConst.CLEAR });
+  };
+
   return (
     <CartContext.Provider
       value={{
@@ -106,6 +118,7 @@ const CartContextProvider = (props) => {
         totalPrice: cartState.totalPrice,
         addItem: handleAddItem,
         removeItem: handleRemoveItem,
+        clearCart: handleClearCart,
       }}
     >
       {props.children}
