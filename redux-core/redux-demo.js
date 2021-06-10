@@ -18,17 +18,29 @@ const counterReducer = (state = { counter: 0 }, action) => {
   return state;
 };
 
+// 1. When we initialize with Reducer function, the reducer function will be executed for the first time 
 const store = redux.createStore(counterReducer);
 
-//console.log(store.getState());
+// 3. if you read the state here, it will return { counter: 1 }. 
+// As already the reducer function was executed it will have { counter: 1 } 
+//console.log(store.getState()); 
 
+
+// 4. Subscriber function 
 const counterSubscriber = () => {
   const latestState = store.getState();
   console.log(latestState);
 };
 
+// 5. Subscribe to the store, on any change the subscribed function will be triggered 
 store.subscribe(counterSubscriber);
 
+
+// 6. Dispath an action to the Reducer to handle. 
+// This will trigger the Reducer Function, the reducer function will chagne the store, and then the subscriber will be executed 
+// The subscriber will have { counter : 2 } 
+// How, initially the counter was 0, on createStore the reducer function will run once and it will increment it to 1 
+// On dispatch it will increment the coutner to 2 
 store.dispatch({ type: "INCREMENT" });
 
 store.dispatch({ type: "DECREMENT" });
