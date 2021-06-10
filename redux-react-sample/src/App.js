@@ -1,9 +1,13 @@
-import Counter from './components/Counter';
-
+import { Fragment } from "react";
+import Counter from "./components/Counter";
+import CounterClass from "./components/CounterClass";
 
 function App() {
   return (
-    <Counter />
+    <Fragment>
+      <Counter></Counter>
+      {/* <CounterClass></CounterClass> */}
+    </Fragment>
   );
 }
 
