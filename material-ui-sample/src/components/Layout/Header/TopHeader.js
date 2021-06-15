@@ -9,7 +9,6 @@ import IconButton from "@material-ui/core/IconButton";
 import Badge from "@material-ui/core/Badge";
 import MenuIcon from "@material-ui/icons/Menu";
 import NotificationsIcon from "@material-ui/icons/Notifications";
-import MenuDrawer from "./MenuDrawer";
 
 const drawerWidth = 240;
 
@@ -43,31 +42,27 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Header = () => {
+const TopHeader = (props) => {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(true);
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
-  const handleDrawerClose = () => {
-    setOpen(false);
-  };
 
   return (
     <Fragment>
       <AppBar
         position="absolute"
-        className={clsx(classes.appBar, open && classes.appBarShift)}
+        className={clsx(
+          classes.appBar,
+          props.menuDrawerOpen && classes.appBarShift
+        )}
       >
         <Toolbar className={classes.toolbar}>
           <IconButton
             edge="start"
             color="inherit"
             aria-label="open drawer"
-            onClick={handleDrawerOpen}
+            onClick={props.onDrawerOpen}
             className={clsx(
               classes.menuButton,
-              open && classes.menuButtonHidden
+              props.menuDrawerOpen && classes.menuButtonHidden
             )}
           >
             <MenuIcon />
@@ -79,7 +74,7 @@ const Header = () => {
             noWrap
             className={classes.title}
           >
-            Dashboard
+            {props.pageTitle}
           </Typography>
           <IconButton color="inherit">
             <Badge badgeContent={4} color="secondary">
@@ -88,9 +83,8 @@ const Header = () => {
           </IconButton>
         </Toolbar>
       </AppBar>
-      <MenuDrawer open={open} handleDrawerClose={handleDrawerClose} />
     </Fragment>
   );
 };
 
-export default Header;
+export default TopHeader;

@@ -5,7 +5,7 @@ import List from "@material-ui/core/List";
 import Divider from "@material-ui/core/Divider";
 import IconButton from "@material-ui/core/IconButton";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
-import { mainListItems, secondaryListItems } from "../Menu/MenuItems";
+import { primaryMenuItems, secondaryMenuItems } from "./MenuItems";
 import { makeStyles } from "@material-ui/core/styles";
 
 const drawerWidth = 240;
@@ -49,20 +49,20 @@ const MenuDrawer = (props) => {
       classes={{
         paper: clsx(
           classes.drawerPaper,
-          !props.open && classes.drawerPaperClose
+          !props.menuDrawerOpen && classes.drawerPaperClose
         ),
       }}
-      open={props.open}
+      open={props.menuDrawerOpen}
     >
       <div className={classes.toolbarIcon}>
-        <IconButton onClick={props.handleDrawerClose}>
+        <IconButton onClick={props.onDrawerClose}>
           <ChevronLeftIcon />
         </IconButton>
       </div>
       <Divider />
-      <List>{mainListItems}</List>
+      <List>{primaryMenuItems}</List>
       <Divider />
-      <List>{secondaryListItems}</List>
+      <List>{secondaryMenuItems}</List>
     </Drawer>
   );
 };
