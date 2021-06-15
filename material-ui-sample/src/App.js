@@ -1,8 +1,14 @@
+import { Fragment } from "react";
+import MainLayout from "./components/Layout/MainLayout";
+import Dashboard from "./pages/Dashboard";
+
 const App = () => {
   return (
-    <div>
-      <h1>Welcome to React</h1>
-    </div>
+    <Fragment>
+      <MainLayout>
+        <Dashboard></Dashboard>
+      </MainLayout>
+    </Fragment>
   );
 };
 
