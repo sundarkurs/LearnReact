@@ -1,14 +1,21 @@
-import { Fragment, useState } from "react";
+import React, { Fragment, useState } from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 import MainLayout from "./components/Layout/MainLayout";
 import Dashboard from "./pages/Dashboard";
 import Types from "./pages/Types";
+import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 
 const App = () => {
   const [pageTitle, setPageTitle] = useState("Dashboard");
 
+  const darkTheme = createMuiTheme({
+    palette: {
+      type: "dark", // light
+    },
+  });
+
   return (
-    <Fragment>
+    <ThemeProvider theme={darkTheme}>
       <MainLayout pageTitle={pageTitle}>
         <Switch>
           <Route path="/" exact>
@@ -25,7 +32,7 @@ const App = () => {
           </Route>
         </Switch>
       </MainLayout>
-    </Fragment>
+    </ThemeProvider>
   );
 };
 
