@@ -4,11 +4,11 @@ import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
-import Badge from "@material-ui/core/Badge";
 import MenuIcon from "@material-ui/icons/Menu";
-import NotificationsIcon from "@material-ui/icons/Notifications";
+import PropTypes from "prop-types";
+import Notification from "./Notification";
+import PageTitle from "./PageTitle";
 
 const drawerWidth = 240;
 
@@ -37,9 +37,6 @@ const useStyles = makeStyles((theme) => ({
   menuButtonHidden: {
     display: "none",
   },
-  title: {
-    flexGrow: 1,
-  },
 }));
 
 const TopHeader = (props) => {
@@ -67,20 +64,8 @@ const TopHeader = (props) => {
           >
             <MenuIcon />
           </IconButton>
-          <Typography
-            component="h1"
-            variant="h6"
-            color="inherit"
-            noWrap
-            className={classes.title}
-          >
-            {props.pageTitle}
-          </Typography>
-          <IconButton color="inherit">
-            <Badge badgeContent={4} color="secondary">
-              <NotificationsIcon />
-            </Badge>
-          </IconButton>
+          <PageTitle pageTitle={props.pageTitle} />
+          <Notification />
         </Toolbar>
       </AppBar>
     </Fragment>
@@ -88,3 +73,9 @@ const TopHeader = (props) => {
 };
 
 export default TopHeader;
+
+TopHeader.propTypes = {
+  menuDrawerOpen: PropTypes.bool,
+  onDrawerOpen: PropTypes.func,
+  pageTitle: PropTypes.string,
+};
