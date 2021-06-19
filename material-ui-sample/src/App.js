@@ -17,7 +17,7 @@ const App = () => {
 
   const darkTheme = createMuiTheme({
     palette: {
-      type: "dark", // light
+      type: "light", // light
     },
   });
 
