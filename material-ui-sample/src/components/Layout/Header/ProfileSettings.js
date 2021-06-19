@@ -4,11 +4,13 @@ import AccountCircle from "@material-ui/icons/AccountCircle";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 import IconButton from "@material-ui/core/IconButton";
+import Divider from "@material-ui/core/Divider";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
-import DraftsIcon from "@material-ui/icons/Drafts";
-import SendIcon from "@material-ui/icons/Send";
+import PersonIcon from "@material-ui/icons/Person";
+import SettingsIcon from "@material-ui/icons/Settings";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import { NavLink } from "react-router-dom";
 
 const StyledMenu = withStyles({
   paper: {
@@ -45,15 +47,11 @@ const StyledMenuItem = withStyles((theme) => ({
 const ProfileSettings = () => {
   const [anchorEl, setAnchorEl] = useState(null);
 
-  const handleProfileMenuOpen = (event) => {
+  const menuOpenHandler = (event) => {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
+  const menuCloseHandler = () => {
     setAnchorEl(null);
   };
 
@@ -63,25 +61,37 @@ const ProfileSettings = () => {
       anchorEl={anchorEl}
       keepMounted
       open={Boolean(anchorEl)}
-      onClose={handleClose}
+      onClose={menuCloseHandler}
     >
+      <NavLink
+        to="/profile"
+        style={{ textDecoration: "none", color: "inherit" }}
+      >
+        <StyledMenuItem>
+          <ListItemIcon>
+            <PersonIcon fontSize="small" />
+          </ListItemIcon>
+          <ListItemText primary="Profile" />
+        </StyledMenuItem>
+      </NavLink>
+
+      <NavLink
+        to="/my-settings"
+        style={{ textDecoration: "none", color: "inherit" }}
+      >
+        <StyledMenuItem>
+          <ListItemIcon>
+            <SettingsIcon fontSize="small" />
+          </ListItemIcon>
+          <ListItemText primary="My Settings" />
+        </StyledMenuItem>
+      </NavLink>
+      <Divider />
       <StyledMenuItem>
         <ListItemIcon>
-          <SendIcon fontSize="small" />
+          <ExitToAppIcon fontSize="small" />
         </ListItemIcon>
-        <ListItemText primary="Sent mail" />
-      </StyledMenuItem>
-      <StyledMenuItem>
-        <ListItemIcon>
-          <DraftsIcon fontSize="small" />
-        </ListItemIcon>
-        <ListItemText primary="Drafts" />
-      </StyledMenuItem>
-      <StyledMenuItem>
-        <ListItemIcon>
-          <InboxIcon fontSize="small" />
-        </ListItemIcon>
-        <ListItemText primary="Inbox" />
+        <ListItemText primary="Logout" />
       </StyledMenuItem>
     </StyledMenu>
   );
@@ -92,7 +102,7 @@ const ProfileSettings = () => {
         aria-label="account of current user"
         aria-controls="primary-search-account-menu"
         aria-haspopup="true"
-        onClick={handleProfileMenuOpen}
+        onClick={menuOpenHandler}
         color="inherit"
       >
         <AccountCircle />

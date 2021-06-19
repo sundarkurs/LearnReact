@@ -1,12 +1,12 @@
 import React from "react";
 import PageLayout from "../components/Layout/PageLayout";
 
-const Profile = (props) => {
+const NotFound = (props) => {
   return (
     <PageLayout>
-      <p>Some content goes here...</p>
+      <p>Resource not found.</p>
     </PageLayout>
   );
 };
 
-export default Profile;
+export default NotFound;

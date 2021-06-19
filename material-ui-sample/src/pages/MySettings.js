@@ -1,7 +1,7 @@
 import React from "react";
 import PageLayout from "../components/Layout/PageLayout";
 
-const Profile = (props) => {
+const MySettings = (props) => {
   return (
     <PageLayout>
       <p>Some content goes here...</p>
@@ -9,4 +9,4 @@ const Profile = (props) => {
   );
 };
 
-export default Profile;
+export default MySettings;
