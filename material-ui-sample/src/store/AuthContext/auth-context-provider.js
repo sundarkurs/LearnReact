@@ -1,11 +1,16 @@
 import React, { useState, useEffect, useContext } from "react";
 import AuthContext from "./auth-context";
 
+const LOGGED_IN_LOCAL_STORE = "IsUserLoggedIn";
+
 export const AuthContextProvider = (props) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isDarkTheme, setIsDarkTheme] = useState(false);
 
   useEffect(() => {
-    const storedUserLoggedInInformation = localStorage.getItem("isLoggedIn");
+    const storedUserLoggedInInformation = localStorage.getItem(
+      LOGGED_IN_LOCAL_STORE
+    );
 
     if (storedUserLoggedInInformation === "1") {
       setIsLoggedIn(true);
@@ -13,13 +18,17 @@ export const AuthContextProvider = (props) => {
   }, []);
 
   const logoutHandler = () => {
-    localStorage.removeItem("isLoggedIn");
+    localStorage.removeItem(LOGGED_IN_LOCAL_STORE);
     setIsLoggedIn(false);
   };
 
   const loginHandler = (email, password) => {
-    localStorage.setItem("isLoggedIn", "1");
+    localStorage.setItem(LOGGED_IN_LOCAL_STORE, "1");
     setIsLoggedIn(true);
+  };
+
+  const toggleThemeHandler = () => {
+    setIsDarkTheme((prevState) => !prevState);
   };
 
   return (
@@ -28,6 +37,8 @@ export const AuthContextProvider = (props) => {
         isLoggedIn: isLoggedIn,
         onLogout: logoutHandler,
         onLogin: loginHandler,
+        isDarkTheme: isDarkTheme,
+        onToggleTheme: toggleThemeHandler,
       }}
     >
       {props.children}
