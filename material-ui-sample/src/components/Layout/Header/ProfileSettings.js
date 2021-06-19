@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import { Fragment, useState, useContext } from "react";
 import { withStyles } from "@material-ui/core/styles";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -11,6 +11,8 @@ import PersonIcon from "@material-ui/icons/Person";
 import SettingsIcon from "@material-ui/icons/Settings";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import { NavLink } from "react-router-dom";
+import AuthContext from "../../../store/AuthContext/auth-context";
+import { useHistory } from "react-router-dom";
 
 const StyledMenu = withStyles({
   paper: {
@@ -45,7 +47,9 @@ const StyledMenuItem = withStyles((theme) => ({
 }))(MenuItem);
 
 const ProfileSettings = () => {
+  const history = useHistory();
   const [anchorEl, setAnchorEl] = useState(null);
+  const authCtx = useContext(AuthContext);
 
   const menuOpenHandler = (event) => {
     setAnchorEl(event.currentTarget);
@@ -53,6 +57,11 @@ const ProfileSettings = () => {
 
   const menuCloseHandler = () => {
     setAnchorEl(null);
+  };
+
+  const logoutHandler = () => {
+    authCtx.onLogout();
+    history.push("/login");
   };
 
   const profileMenuItems = (
@@ -87,7 +96,7 @@ const ProfileSettings = () => {
         </StyledMenuItem>
       </NavLink>
       <Divider />
-      <StyledMenuItem>
+      <StyledMenuItem onClick={logoutHandler}>
         <ListItemIcon>
           <ExitToAppIcon fontSize="small" />
         </ListItemIcon>

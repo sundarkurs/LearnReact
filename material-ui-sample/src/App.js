@@ -17,7 +17,7 @@ const App = () => {
 
   const darkTheme = createMuiTheme({
     palette: {
-      type: "light", // light
+      type: authCtx.isDarkTheme ? "dark" : "light",
     },
   });
 
