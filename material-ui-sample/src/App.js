@@ -6,10 +6,12 @@ import Types from "./pages/Types";
 import Profile from "./pages/Profile";
 import MySettings from "./pages/MySettings";
 import NotFound from "./pages/NotFound";
+import Login from "./pages/Login";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 
 const App = () => {
   const [pageTitle, setPageTitle] = useState("Dashboard");
+  const loggedIn = true;
 
   const darkTheme = createMuiTheme({
     palette: {
@@ -19,28 +21,41 @@ const App = () => {
 
   return (
     <ThemeProvider theme={darkTheme}>
-      <MainLayout pageTitle={pageTitle}>
+      {!loggedIn && (
         <Switch>
-          <Route path="/" exact>
-            <Redirect to="dashboard"></Redirect>
-          </Route>
-          <Route path="/dashboard" exact>
-            <Dashboard />
-          </Route>
-          <Route path="/asset-types" exact>
-            <Types></Types>
-          </Route>
-          <Route path="/profile" exact>
-            <Profile />
-          </Route>
-          <Route path="/my-settings" exact>
-            <MySettings />
-          </Route>
-          <Route path="*">
-            <NotFound />
+          <Route path="/login" exact>
+            <Login />
           </Route>
         </Switch>
-      </MainLayout>
+      )}
+
+      {loggedIn && (
+        <MainLayout pageTitle={pageTitle}>
+          <Switch>
+            <Route path="/" exact>
+              <Redirect to="dashboard"></Redirect>
+            </Route>
+            <Route path="/dashboard" exact>
+              <Dashboard />
+            </Route>
+            <Route path="/asset-types" exact>
+              <Types></Types>
+            </Route>
+            <Route path="/profile" exact>
+              <Profile />
+            </Route>
+            <Route path="/my-settings" exact>
+              <MySettings />
+            </Route>
+            <Route path="/login" exact>
+              <Redirect to="dashboard"></Redirect>
+            </Route>
+            <Route path="*">
+              <NotFound />
+            </Route>
+          </Switch>
+        </MainLayout>
+      )}
     </ThemeProvider>
   );
 };
