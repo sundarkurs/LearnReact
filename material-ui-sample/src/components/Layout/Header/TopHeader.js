@@ -9,6 +9,8 @@ import MenuIcon from "@material-ui/icons/Menu";
 import PropTypes from "prop-types";
 import Notification from "./Notification";
 import PageTitle from "./PageTitle";
+import ProfileSettings from "./ProfileSettings";
+import ThemeSelector from "./ThemeSelector";
 
 const drawerWidth = 240;
 
@@ -66,7 +68,9 @@ const TopHeader = (props) => {
             <MenuIcon />
           </IconButton>
           <PageTitle pageTitle={props.pageTitle} />
+          <ThemeSelector />
           <Notification />
+          <ProfileSettings />
         </Toolbar>
       </AppBar>
     </Fragment>
