@@ -29,7 +29,7 @@ const App = () => {
             <Login />
           </Route>
           <Route path="*">
-            <Unauthorized />
+            <Redirect to="login"></Redirect>
           </Route>
         </Switch>
       )}
