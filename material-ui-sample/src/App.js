@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { useContext, useState } from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 import MainLayout from "./components/Layout/MainLayout";
 import Dashboard from "./pages/Dashboard";
@@ -7,11 +7,13 @@ import Profile from "./pages/Profile";
 import MySettings from "./pages/MySettings";
 import NotFound from "./pages/NotFound";
 import Login from "./pages/Login";
+import Unauthorized from "./pages/Unauthorized";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+import AuthContext from "./store/AuthContext/auth-context";
 
 const App = () => {
+  const authCtx = useContext(AuthContext);
   const [pageTitle, setPageTitle] = useState("Dashboard");
-  const loggedIn = true;
 
   const darkTheme = createMuiTheme({
     palette: {
@@ -21,15 +23,18 @@ const App = () => {
 
   return (
     <ThemeProvider theme={darkTheme}>
-      {!loggedIn && (
+      {!authCtx.isLoggedIn && (
         <Switch>
           <Route path="/login" exact>
             <Login />
           </Route>
+          <Route path="*">
+            <Unauthorized />
+          </Route>
         </Switch>
       )}
 
-      {loggedIn && (
+      {authCtx.isLoggedIn && (
         <MainLayout pageTitle={pageTitle}>
           <Switch>
             <Route path="/" exact>
