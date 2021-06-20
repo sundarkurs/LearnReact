@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import { Fragment, useContext } from "react";
 import React from "react";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
@@ -11,6 +11,7 @@ import Notification from "./Notification";
 import PageTitle from "./PageTitle";
 import ProfileSettings from "./ProfileSettings";
 import ThemeSelector from "./ThemeSelector";
+import AuthContext from "../../../store/AuthContext/auth-context";
 
 const drawerWidth = 240;
 
@@ -19,7 +20,8 @@ const useStyles = makeStyles((theme) => ({
     paddingRight: 24,
   },
   appBar: {
-    //backgroundColor: theme.palette.background.default, //"#424242",
+    backgroundColor: (props) =>
+      props.isDarkTheme ? theme.palette.background.default : "",
     zIndex: theme.zIndex.drawer + 1,
     transition: theme.transitions.create(["width", "margin"], {
       easing: theme.transitions.easing.sharp,
@@ -43,7 +45,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const TopHeader = (props) => {
-  const classes = useStyles();
+  const authCtx = useContext(AuthContext);
+
+  const styleProps = {
+    isDarkTheme: authCtx.isDarkTheme,
+  };
+
+  const classes = useStyles(styleProps);
 
   return (
     <Fragment>

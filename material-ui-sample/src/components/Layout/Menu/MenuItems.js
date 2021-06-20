@@ -6,8 +6,6 @@ import ListSubheader from "@material-ui/core/ListSubheader";
 
 import ArtTrackIcon from "@material-ui/icons/ArtTrack";
 import CollectionsIcon from "@material-ui/icons/Collections";
-import BarChartIcon from "@material-ui/icons/BarChart";
-import LayersIcon from "@material-ui/icons/Layers";
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import AssignmentIcon from "@material-ui/icons/Assignment";
 import { NavLink } from "react-router-dom";

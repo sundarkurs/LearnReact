@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import AuthContext from "./store/AuthContext/auth-context";
 import MainLayout from "./components/Layout/MainLayout";
