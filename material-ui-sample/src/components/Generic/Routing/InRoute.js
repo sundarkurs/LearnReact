@@ -1,11 +1,11 @@
 import React from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 import Dashboard from "../../../pages/Dashboard";
-import AssetTypes from "../../../pages/AssetTypes";
 import Profile from "../../../pages/Profile";
 import MySettings from "../../../pages/MySettings";
 import NotFound from "../../../pages/NotFound";
 import Assets from "../../../pages/Assets";
+import AssetExplorer from "../../../pages/AssetExplorer";
 
 const InRoute = () => {
   return (
@@ -16,11 +16,11 @@ const InRoute = () => {
       <Route path="/dashboard" exact>
         <Dashboard />
       </Route>
-      <Route path="/asset-types" exact>
-        <AssetTypes />
-      </Route>
       <Route path="/assets" exact>
         <Assets />
+      </Route>
+      <Route path="/assets/:assetCode">
+        <AssetExplorer />
       </Route>
       <Route path="/profile" exact>
         <Profile />

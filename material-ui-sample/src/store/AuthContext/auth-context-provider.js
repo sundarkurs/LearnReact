@@ -5,7 +5,7 @@ const LOGGED_IN_LOCAL_STORE = "IsUserLoggedIn";
 
 export const AuthContextProvider = (props) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isDarkTheme, setIsDarkTheme] = useState(false);
+  const [isDarkTheme, setIsDarkTheme] = useState(true);
   const [pageTitle, setPageTitle] = useState("Dashboard");
 
   useEffect(() => {

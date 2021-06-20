@@ -3,8 +3,6 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListSubheader from "@material-ui/core/ListSubheader";
-
-import ArtTrackIcon from "@material-ui/icons/ArtTrack";
 import CollectionsIcon from "@material-ui/icons/Collections";
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import AssignmentIcon from "@material-ui/icons/Assignment";
@@ -21,18 +19,6 @@ export const primaryMenuItems = (
           <DashboardIcon />
         </ListItemIcon>
         <ListItemText primary="Dashboard" />
-      </ListItem>
-    </NavLink>
-
-    <NavLink
-      to="/asset-types"
-      style={{ textDecoration: "none", color: "inherit" }}
-    >
-      <ListItem button>
-        <ListItemIcon>
-          <ArtTrackIcon />
-        </ListItemIcon>
-        <ListItemText primary="Asset types" />
       </ListItem>
     </NavLink>
     <NavLink to="/assets" style={{ textDecoration: "none", color: "inherit" }}>
