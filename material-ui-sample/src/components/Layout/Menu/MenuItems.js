@@ -4,11 +4,11 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListSubheader from "@material-ui/core/ListSubheader";
 
-import AppsIcon from "@material-ui/icons/Apps";
+import ArtTrackIcon from "@material-ui/icons/ArtTrack";
 import CollectionsIcon from "@material-ui/icons/Collections";
-import PeopleIcon from "@material-ui/icons/People";
 import BarChartIcon from "@material-ui/icons/BarChart";
 import LayersIcon from "@material-ui/icons/Layers";
+import DashboardIcon from "@material-ui/icons/Dashboard";
 import AssignmentIcon from "@material-ui/icons/Assignment";
 import { NavLink } from "react-router-dom";
 
@@ -20,7 +20,7 @@ export const primaryMenuItems = (
     >
       <ListItem button>
         <ListItemIcon>
-          <AppsIcon />
+          <DashboardIcon />
         </ListItemIcon>
         <ListItemText primary="Dashboard" />
       </ListItem>
@@ -32,32 +32,19 @@ export const primaryMenuItems = (
     >
       <ListItem button>
         <ListItemIcon>
-          <CollectionsIcon />
+          <ArtTrackIcon />
         </ListItemIcon>
-        <ListItemText primary="Types" />
+        <ListItemText primary="Asset types" />
       </ListItem>
     </NavLink>
-
-    <ListItem button>
-      <ListItemIcon>
-        <PeopleIcon />
-      </ListItemIcon>
-      <ListItemText primary="Customers" />
-    </ListItem>
-
-    <ListItem button>
-      <ListItemIcon>
-        <BarChartIcon />
-      </ListItemIcon>
-      <ListItemText primary="Reports" />
-    </ListItem>
-
-    <ListItem button>
-      <ListItemIcon>
-        <LayersIcon />
-      </ListItemIcon>
-      <ListItemText primary="Integrations" />
-    </ListItem>
+    <NavLink to="/assets" style={{ textDecoration: "none", color: "inherit" }}>
+      <ListItem button>
+        <ListItemIcon>
+          <CollectionsIcon />
+        </ListItemIcon>
+        <ListItemText primary="Assets" />
+      </ListItem>
+    </NavLink>
   </div>
 );
 
