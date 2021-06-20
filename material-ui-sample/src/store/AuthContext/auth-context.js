@@ -6,6 +6,8 @@ const AuthContext = React.createContext({
   onLogin: (email, password) => {},
   isDarkTheme: false,
   onToggleTheme: () => {},
+  pageTitle: "",
+  onTitleChange: (title) => {},
 });
 
 export default AuthContext;

@@ -7,8 +7,6 @@ import OutRoute from "./components/Generic/Routing/OutRoute";
 
 const App = () => {
   const authCtx = useContext(AuthContext);
-  const [pageTitle, setPageTitle] = useState("Dashboard");
-
   const darkTheme = createMuiTheme({
     palette: {
       type: authCtx.isDarkTheme ? "dark" : "light",
@@ -19,7 +17,7 @@ const App = () => {
     <ThemeProvider theme={darkTheme}>
       {!authCtx.isLoggedIn && <OutRoute />}
       {authCtx.isLoggedIn && (
-        <MainLayout pageTitle={pageTitle}>
+        <MainLayout>
           <InRoute />
         </MainLayout>
       )}

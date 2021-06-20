@@ -1,11 +1,11 @@
 import React from "react";
-import PageLayout from "../components/Layout/PageLayout";
+import PageSettings from "./Settings/PageSettings";
 
 const Assets = (props) => {
   return (
-    <PageLayout>
+    <PageSettings title="Assets">
       <p>Some content goes here...</p>
-    </PageLayout>
+    </PageSettings>
   );
 };
 

@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 import Dashboard from "../../../pages/Dashboard";
-import Types from "../../../pages/Types";
+import AssetTypes from "../../../pages/AssetTypes";
 import Profile from "../../../pages/Profile";
 import MySettings from "../../../pages/MySettings";
 import NotFound from "../../../pages/NotFound";
@@ -17,7 +17,7 @@ const InRoute = () => {
         <Dashboard />
       </Route>
       <Route path="/asset-types" exact>
-        <Types></Types>
+        <AssetTypes />
       </Route>
       <Route path="/assets" exact>
         <Assets />

@@ -1,11 +1,11 @@
 import React from "react";
-import PageLayout from "../components/Layout/PageLayout";
+import PageSettings from "./Settings/PageSettings";
 
 const NotFound = (props) => {
   return (
-    <PageLayout>
+    <PageSettings title="Not found">
       <p>Resource not found.</p>
-    </PageLayout>
+    </PageSettings>
   );
 };
 

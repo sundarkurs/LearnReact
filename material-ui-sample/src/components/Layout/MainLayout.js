@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Container from "@material-ui/core/Container";
 import TopHeader from "./Header/TopHeader";
 import MenuDrawer from "./Menu/MenuDrawer";
+import AuthContext from "../../store/AuthContext/auth-context";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -23,6 +24,7 @@ const useStyles = makeStyles((theme) => ({
 
 const MainLayout = (props) => {
   const classes = useStyles();
+  const authCtx = useContext(AuthContext);
 
   const [menuDrawerOpen, setMenuDrawerOpen] = useState(true);
 
@@ -37,7 +39,7 @@ const MainLayout = (props) => {
     <div className={classes.root}>
       <CssBaseline />
       <TopHeader
-        pageTitle={props.pageTitle}
+        pageTitle={authCtx.pageTitle}
         menuDrawerOpen={menuDrawerOpen}
         onDrawerOpen={openMenuDrawerHandler}
       />

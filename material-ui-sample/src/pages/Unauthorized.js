@@ -1,11 +1,11 @@
 import React from "react";
-import PageLayout from "../components/Layout/PageLayout";
+import PageSettings from "./Settings/PageSettings";
 
 const Unauthorized = (props) => {
   return (
-    <PageLayout>
+    <PageSettings title="Unauthorized">
       <p>Unauthorized.</p>
-    </PageLayout>
+    </PageSettings>
   );
 };
 

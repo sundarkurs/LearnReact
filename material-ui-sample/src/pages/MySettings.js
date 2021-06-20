@@ -1,11 +1,11 @@
 import React from "react";
-import PageLayout from "../components/Layout/PageLayout";
+import PageSettings from "./Settings/PageSettings";
 
 const MySettings = (props) => {
   return (
-    <PageLayout>
+    <PageSettings title="My Settings">
       <p>Some content goes here...</p>
-    </PageLayout>
+    </PageSettings>
   );
 };
 
