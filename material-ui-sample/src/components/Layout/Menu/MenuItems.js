@@ -21,12 +21,15 @@ export const primaryMenuItems = (
         <ListItemText primary="Dashboard" />
       </ListItem>
     </NavLink>
-    <NavLink to="/assets" style={{ textDecoration: "none", color: "inherit" }}>
+    <NavLink
+      to="/asset-types"
+      style={{ textDecoration: "none", color: "inherit" }}
+    >
       <ListItem button>
         <ListItemIcon>
           <CollectionsIcon />
         </ListItemIcon>
-        <ListItemText primary="Assets" />
+        <ListItemText primary="Asset Types" />
       </ListItem>
     </NavLink>
   </div>
@@ -40,18 +43,6 @@ export const secondaryMenuItems = (
         <AssignmentIcon />
       </ListItemIcon>
       <ListItemText primary="Current month" />
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <AssignmentIcon />
-      </ListItemIcon>
-      <ListItemText primary="Last quarter" />
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <AssignmentIcon />
-      </ListItemIcon>
-      <ListItemText primary="Year-end sale" />
     </ListItem>
   </div>
 );

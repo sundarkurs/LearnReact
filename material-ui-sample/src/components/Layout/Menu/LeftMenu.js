@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const MenuDrawer = (props) => {
+const LeftMenu = (props) => {
   const classes = useStyles();
 
   return (
@@ -67,4 +67,4 @@ const MenuDrawer = (props) => {
   );
 };
 
-export default MenuDrawer;
+export default LeftMenu;

@@ -1,9 +1,6 @@
-import { Fragment, useState, useContext } from "react";
 import { withStyles } from "@material-ui/core/styles";
-import AccountCircle from "@material-ui/icons/AccountCircle";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
-import IconButton from "@material-ui/core/IconButton";
 import Divider from "@material-ui/core/Divider";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
@@ -11,8 +8,6 @@ import PersonIcon from "@material-ui/icons/Person";
 import SettingsIcon from "@material-ui/icons/Settings";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import { NavLink } from "react-router-dom";
-import AuthContext from "../../../store/AuthContext/auth-context";
-import { useHistory } from "react-router-dom";
 
 const StyledMenu = withStyles({
   paper: {
@@ -46,31 +41,16 @@ const StyledMenuItem = withStyles((theme) => ({
   },
 }))(MenuItem);
 
-const ProfileSettings = () => {
-  const history = useHistory();
-  const [anchorEl, setAnchorEl] = useState(null);
-  const authCtx = useContext(AuthContext);
+const ProfileMenu = (props) => {
+  const { onMenuClose, profileElement, onLogout } = props;
 
-  const menuOpenHandler = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const menuCloseHandler = () => {
-    setAnchorEl(null);
-  };
-
-  const logoutHandler = () => {
-    authCtx.onLogout();
-    history.push("/login");
-  };
-
-  const profileMenuItems = (
+  return (
     <StyledMenu
       id="customized-menu"
-      anchorEl={anchorEl}
+      anchorEl={profileElement}
       keepMounted
-      open={Boolean(anchorEl)}
-      onClose={menuCloseHandler}
+      open={Boolean(profileElement)}
+      onClose={onMenuClose}
     >
       <NavLink
         to="/profile"
@@ -96,7 +76,7 @@ const ProfileSettings = () => {
         </StyledMenuItem>
       </NavLink>
       <Divider />
-      <StyledMenuItem onClick={logoutHandler}>
+      <StyledMenuItem onClick={onLogout}>
         <ListItemIcon>
           <ExitToAppIcon fontSize="small" />
         </ListItemIcon>
@@ -104,21 +84,6 @@ const ProfileSettings = () => {
       </StyledMenuItem>
     </StyledMenu>
   );
-
-  return (
-    <Fragment>
-      <IconButton
-        aria-label="account of current user"
-        aria-controls="primary-search-account-menu"
-        aria-haspopup="true"
-        onClick={menuOpenHandler}
-        color="inherit"
-      >
-        <AccountCircle />
-      </IconButton>
-      {profileMenuItems}
-    </Fragment>
-  );
 };
 
-export default ProfileSettings;
+export default ProfileMenu;

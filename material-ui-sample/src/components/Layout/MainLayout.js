@@ -3,7 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Container from "@material-ui/core/Container";
 import TopHeader from "./Header/TopHeader";
-import MenuDrawer from "./Menu/MenuDrawer";
+import LeftMenu from "./Menu/LeftMenu";
 import AuthContext from "../../store/AuthContext/auth-context";
 
 const useStyles = makeStyles((theme) => ({
@@ -43,7 +43,7 @@ const MainLayout = (props) => {
         menuDrawerOpen={menuDrawerOpen}
         onDrawerOpen={openMenuDrawerHandler}
       />
-      <MenuDrawer
+      <LeftMenu
         menuDrawerOpen={menuDrawerOpen}
         onDrawerClose={closeMenuDrawerHandler}
       />

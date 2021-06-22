@@ -1,4 +1,4 @@
-import { Fragment, useContext } from "react";
+import { useContext } from "react";
 import React from "react";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
@@ -9,7 +9,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 import PropTypes from "prop-types";
 import Notification from "./Notification";
 import PageTitle from "./PageTitle";
-import ProfileSettings from "./ProfileSettings";
+import ProfileIcon from "./ProfileIcon";
 import ThemeSelector from "./ThemeSelector";
 import AuthContext from "../../../store/AuthContext/auth-context";
 
@@ -54,34 +54,32 @@ const TopHeader = (props) => {
   const classes = useStyles(styleProps);
 
   return (
-    <Fragment>
-      <AppBar
-        position="absolute"
-        className={clsx(
-          classes.appBar,
-          props.menuDrawerOpen && classes.appBarShift
-        )}
-      >
-        <Toolbar className={classes.toolbar}>
-          <IconButton
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-            onClick={props.onDrawerOpen}
-            className={clsx(
-              classes.menuButton,
-              props.menuDrawerOpen && classes.menuButtonHidden
-            )}
-          >
-            <MenuIcon />
-          </IconButton>
-          <PageTitle pageTitle={props.pageTitle} />
-          <ThemeSelector />
-          <Notification />
-          <ProfileSettings />
-        </Toolbar>
-      </AppBar>
-    </Fragment>
+    <AppBar
+      position="absolute"
+      className={clsx(
+        classes.appBar,
+        props.menuDrawerOpen && classes.appBarShift
+      )}
+    >
+      <Toolbar className={classes.toolbar}>
+        <IconButton
+          edge="start"
+          color="inherit"
+          aria-label="open drawer"
+          onClick={props.onDrawerOpen}
+          className={clsx(
+            classes.menuButton,
+            props.menuDrawerOpen && classes.menuButtonHidden
+          )}
+        >
+          <MenuIcon />
+        </IconButton>
+        <PageTitle pageTitle={props.pageTitle} />
+        <ThemeSelector />
+        <Notification />
+        <ProfileIcon />
+      </Toolbar>
+    </AppBar>
   );
 };
 

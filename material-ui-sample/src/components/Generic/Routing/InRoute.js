@@ -4,7 +4,7 @@ import Dashboard from "../../../pages/Dashboard";
 import Profile from "../../../pages/Profile";
 import MySettings from "../../../pages/MySettings";
 import NotFound from "../../../pages/NotFound";
-import Assets from "../../../pages/Assets";
+import AssetTypes from "../../../pages/AssetTypes";
 import AssetExplorer from "../../../pages/AssetExplorer";
 
 const InRoute = () => {
@@ -16,8 +16,8 @@ const InRoute = () => {
       <Route path="/dashboard" exact>
         <Dashboard />
       </Route>
-      <Route path="/assets" exact>
-        <Assets />
+      <Route path="/asset-types" exact>
+        <AssetTypes />
       </Route>
       <Route path="/assets/:assetCode">
         <AssetExplorer />
