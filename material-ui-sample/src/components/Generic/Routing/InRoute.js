@@ -19,7 +19,7 @@ const InRoute = () => {
       <Route path="/asset-types" exact>
         <AssetTypes />
       </Route>
-      <Route path="/assets/:assetCode">
+      <Route path="/asset-types/:assetTypeCode">
         <AssetExplorer />
       </Route>
       <Route path="/profile" exact>

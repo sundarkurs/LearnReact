@@ -11,18 +11,14 @@ const AssetBreadcrumb = (props) => {
       return <Typography color="textPrimary">{item.name}</Typography>;
     } else {
       return (
-        <Link color="inherit"  onClick={props.onMenuClick}>
+        <Link color="inherit" onClick={props.onMenuClick}>
           {item.name}
         </Link>
       );
     }
   });
 
-  return (
-    <Breadcrumbs maxItems={2} aria-label="breadcrumb">
-      {elementsList}
-    </Breadcrumbs>
-  );
+  return <Breadcrumbs aria-label="breadcrumb">{elementsList}</Breadcrumbs>;
 };
 
 export default AssetBreadcrumb;

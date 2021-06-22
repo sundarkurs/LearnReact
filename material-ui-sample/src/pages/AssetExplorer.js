@@ -2,40 +2,28 @@ import React, { useState } from "react";
 import AssetBreadcrumb from "../components/Assets/AssetBreadcrumb";
 import PageSettings from "./Settings/PageSettings";
 import Divider from "@material-ui/core/Divider";
-import { useLocation } from "react-router";
-
-const productImageFolders = [
-  { id: 1, name: "Core", code: "Core", parent: null },
-  { id: 2, name: "Web", code: "Web", parent: 1 },
-  { id: 3, name: "Root", code: "Root", parent: 1 },
-  { id: 4, name: "Inter", code: "Inter", parent: 2 },
-];
-
-const productImageAssets = [{ id: 1, name: "A1 Product", folder: 1 }];
+import { useLocation, useParams } from "react-router";
+import { folders } from "../common/Constants/MockData";
 
 const AssetExplorer = (props) => {
-  const location = useLocation();
-  debugger;
+  const params = useParams();
 
-  const [breadcrumb, setBreadcrumb] = useState([]);
+  const [breadcrumbItems, setBreadcrumbItems] = useState(folders);
 
-
-  let breadCrumbItems = [
-    { order: 0, name: "Product Image", code: "ProductImage" },
-    { order: 1, name: "Core", code: "Core" },
-    { order: 2, name: "Web", code: "Web" },
-    { order: 3, name: "Inter", code: "Inter" },
-  ];
+  console.log(params.assetTypeCode);
 
   const onMenuClickHandler = () => {
     console.log(1);
-    breadCrumbItems = breadCrumbItems.filter((item) => item.order > 2);
+    const updatedBreadcrumbItems = breadcrumbItems.filter(
+      (item) => item.id < 2
+    );
+    setBreadcrumbItems(updatedBreadcrumbItems);
   };
 
   return (
     <PageSettings title="Asset Explorer">
       <AssetBreadcrumb
-        menuItems={breadCrumbItems}
+        menuItems={breadcrumbItems}
         onMenuClick={onMenuClickHandler}
       ></AssetBreadcrumb>
       <Divider></Divider>
