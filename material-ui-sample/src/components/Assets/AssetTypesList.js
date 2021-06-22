@@ -14,7 +14,7 @@ const AssetTypesList = () => {
 
   const listItems = assetTypes.map((item) => {
     return (
-      <Grid item xs={12} sm={4} key={item.id}>
+      <Grid item xs={12} sm={6} md={4} key={item.id}>
         <AssetTypeCard
           assetType={item}
           onAssetTypeClick={onAssetTypeClickHandler}

@@ -5,14 +5,9 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
-import folderImage from "../../assets/folder-image.png";
 import Avatar from "@material-ui/core/Avatar";
 import CardHeader from "@material-ui/core/CardHeader";
 import { red } from "@material-ui/core/colors";
-import ImageTypeImage from "../../assets/asset-type-images/image-type.jpeg";
-import ServiceDocumentImage from "../../assets/asset-type-images/service-document.jpg";
-import UserManualImage from "../../assets/asset-type-images/users-manual.jpg";
-import ProductImage from "../../assets/asset-type-images/product-image.png";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -32,6 +27,8 @@ const useStyles = makeStyles((theme) => ({
 
 export default function AssetTypeCard(props) {
   const classes = useStyles();
+
+  console.log(window.location.origin);
 
   const getAvatarText = (name) => {
     var matches = name.match(/\b(\w)/g);
@@ -60,7 +57,7 @@ export default function AssetTypeCard(props) {
           component="img"
           alt={props.assetType.name}
           height="140"
-          image={ServiceDocumentImage}
+          image={`${window.location.origin}${props.assetType.imageUrl}`}
           title={props.assetType.name}
         />
         <CardContent>

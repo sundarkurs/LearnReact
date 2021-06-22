@@ -4,24 +4,28 @@ export const assetTypes = [
     code: "PRODUCTIMAGE",
     name: "Product Image",
     description: "Product image description",
+    imageUrl: "/images/asset-type-images/product-image.png",
   },
   {
     id: 2,
     code: "SERVICEDOCUMENT",
     name: "Service Document",
     description: "Service document description ",
+    imageUrl: "/images/asset-type-images/service-document.jpg",
   },
   {
     id: 3,
     code: "USERMANUAL",
     name: "User Manual",
     description: "User manual description",
+    imageUrl: "/images/asset-type-images/users-manual.jpg",
   },
   {
-    id: 5,
+    id: 4,
     code: "IMAGE",
     name: "Image",
     description: "General images to be used for all purpose.",
+    imageUrl: "/images/asset-type-images/image-type.jpeg",
   },
 ];
 
