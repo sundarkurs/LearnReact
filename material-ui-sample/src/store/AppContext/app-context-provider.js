@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import AppContext from "./app-context";
+import { assetTypes, folders } from "../../common/Data/MockData";
 
 export const AppContextProvider = (props) => {
   const [isDarkTheme, setIsDarkTheme] = useState(true);
@@ -20,6 +21,8 @@ export const AppContextProvider = (props) => {
         onToggleTheme: toggleThemeHandler,
         pageTitle: pageTitle,
         onTitleChange: onTitleChangeHandler,
+        assetTypes: assetTypes,
+        folders: folders,
       }}
     >
       {props.children}

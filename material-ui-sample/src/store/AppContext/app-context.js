@@ -5,6 +5,8 @@ const AppContext = React.createContext({
   onToggleTheme: () => {},
   pageTitle: "",
   onTitleChange: (title) => {},
+  assetTypes: [],
+  folders: [],
 });
 
 export default AppContext;

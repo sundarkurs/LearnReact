@@ -1,19 +1,19 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import AssetBreadcrumb from "../components/Assets/AssetBreadcrumb";
 import PageSettings from "./Settings/PageSettings";
 import Divider from "@material-ui/core/Divider";
-import { useLocation, useParams } from "react-router";
-import { folders } from "../common/Constants/MockData";
+import { useParams } from "react-router";
+import AppContext from "../store/AppContext/app-context";
 
 const AssetExplorer = (props) => {
+  const appCtx = useContext(AppContext);
   const params = useParams();
 
-  const [breadcrumbItems, setBreadcrumbItems] = useState(folders);
+  const [breadcrumbItems, setBreadcrumbItems] = useState(appCtx.folders);
 
   console.log(params.assetTypeCode);
 
   const onMenuClickHandler = () => {
-    console.log(1);
     const updatedBreadcrumbItems = breadcrumbItems.filter(
       (item) => item.id < 2
     );

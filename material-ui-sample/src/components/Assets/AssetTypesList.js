@@ -1,18 +1,19 @@
-import { Fragment } from "react";
+import { Fragment, useContext } from "react";
 import AssetTypeCard from "./AssetTypeCard";
 import Grid from "@material-ui/core/Grid";
 import { useHistory, useLocation } from "react-router";
-import { assetTypes } from "../../common/Constants/MockData";
+import AppContext from "../../store/AppContext/app-context";
 
 const AssetTypesList = () => {
   const history = useHistory();
   const location = useLocation();
+  const appCtx = useContext(AppContext);
 
   const onAssetTypeClickHandler = (assetType) => {
     history.push(location.pathname + "/" + assetType.code.toLowerCase());
   };
 
-  const listItems = assetTypes.map((item) => {
+  const listItems = appCtx.assetTypes.map((item) => {
     return (
       <Grid item xs={12} sm={6} md={4} key={item.id}>
         <AssetTypeCard
