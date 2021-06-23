@@ -49,7 +49,7 @@ const MainLayout = (props) => {
       />
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
-        <Container maxWidth="lg" className={classes.container}>
+        <Container maxWidth="xlg" className={classes.container}>
           {props.children}
         </Container>
       </main>

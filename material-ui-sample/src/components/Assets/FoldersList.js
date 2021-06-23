@@ -15,7 +15,7 @@ const FoldersList = (props) => {
 
   const listItems = props.folders.map((item) => {
     return (
-      <Grid item xs={6} sm={4} md={3} key={item.id}>
+      <Grid item xs={12} sm={6} md={4} lg={3} key={item.id}>
         <FolderCard
           folder={item}
           onFolderClick={onFolderClickHandler}
