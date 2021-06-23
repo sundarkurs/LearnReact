@@ -37,7 +37,7 @@ const AssetCard = (props) => {
   };
 
   return (
-    <Card onClick={() => props.onAssetClick(asset)}>
+    <Card onClick={() => props.onAssetClick(asset)} elevation={10}>
       <CardActionArea>
         <CardMedia
           component="img"

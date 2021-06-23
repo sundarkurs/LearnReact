@@ -42,7 +42,7 @@ const FolderCard = (props) => {
   };
 
   return (
-    <Card onClick={() => props.onFolderClick(folder)}>
+    <Card onClick={() => props.onFolderClick(folder)} elevation={10}>
       <CardActionArea>
         <CardHeader
           avatar={

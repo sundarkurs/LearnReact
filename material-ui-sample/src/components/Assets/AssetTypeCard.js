@@ -37,7 +37,7 @@ export default function AssetTypeCard(props) {
   };
 
   return (
-    <Card onClick={() => props.onAssetTypeClick(props.assetType)}>
+    <Card onClick={() => props.onAssetTypeClick(props.assetType)} elevation={10}>
       <CardActionArea>
         <CardHeader
           avatar={
