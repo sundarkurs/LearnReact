@@ -1,12 +1,13 @@
 import { Fragment, useContext, useEffect } from "react";
 import PageLayout from "../../components/Layout/PageLayout";
-import AuthContext from "../../store/AuthContext/auth-context";
 import PropTypes from "prop-types";
+import AppContext from "../../store/AppContext/app-context";
 
 const PageSettings = (props) => {
-  const authCtx = useContext(AuthContext);
+  const appCtx = useContext(AppContext);
+
   useEffect(() => {
-    authCtx.onTitleChange(props.title);
+    appCtx.onTitleChange(props.title);
   }, []);
 
   let rendering = <PageLayout>{props.children}</PageLayout>;

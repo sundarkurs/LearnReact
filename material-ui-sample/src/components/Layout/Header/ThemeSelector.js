@@ -1,19 +1,19 @@
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Switch from "@material-ui/core/Switch";
 import { useContext } from "react";
-import AuthContext from "../../../store/AuthContext/auth-context";
+import AppContext from "../../../store/AppContext/app-context";
 
 const ThemeSelector = () => {
-  const authCtx = useContext(AuthContext);
+  const appCtx = useContext(AppContext);
 
   const changeHandler = () => {
-    authCtx.onToggleTheme();
+    appCtx.onToggleTheme();
   };
   return (
     <FormControlLabel
       control={
         <Switch
-          checked={authCtx.isDarkTheme}
+          checked={appCtx.isDarkTheme}
           aria-label="Dark"
           onChange={changeHandler}
         />

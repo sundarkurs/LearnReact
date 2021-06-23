@@ -11,7 +11,7 @@ import Notification from "./Notification";
 import PageTitle from "./PageTitle";
 import ProfileIcon from "./ProfileIcon";
 import ThemeSelector from "./ThemeSelector";
-import AuthContext from "../../../store/AuthContext/auth-context";
+import AppContext from "../../../store/AppContext/app-context";
 
 const drawerWidth = 240;
 
@@ -45,10 +45,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const TopHeader = (props) => {
-  const authCtx = useContext(AuthContext);
+  const appCtx = useContext(AppContext);
 
   const styleProps = {
-    isDarkTheme: authCtx.isDarkTheme,
+    isDarkTheme: appCtx.isDarkTheme,
   };
 
   const classes = useStyles(styleProps);

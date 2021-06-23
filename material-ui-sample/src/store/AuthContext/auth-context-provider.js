@@ -5,8 +5,6 @@ const LOGGED_IN_LOCAL_STORE = "IsUserLoggedIn";
 
 export const AuthContextProvider = (props) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isDarkTheme, setIsDarkTheme] = useState(true);
-  const [pageTitle, setPageTitle] = useState("Dashboard");
 
   useEffect(() => {
     const storedUserLoggedInInformation = localStorage.getItem(
@@ -28,24 +26,12 @@ export const AuthContextProvider = (props) => {
     setIsLoggedIn(true);
   };
 
-  const toggleThemeHandler = () => {
-    setIsDarkTheme((prevState) => !prevState);
-  };
-
-  const onTitleChangeHandler = (title) => {
-    setPageTitle(title);
-  };
-
   return (
     <AuthContext.Provider
       value={{
         isLoggedIn: isLoggedIn,
         onLogout: logoutHandler,
         onLogin: loginHandler,
-        isDarkTheme: isDarkTheme,
-        onToggleTheme: toggleThemeHandler,
-        pageTitle: pageTitle,
-        onTitleChange: onTitleChangeHandler,
       }}
     >
       {props.children}
