@@ -1,9 +1,14 @@
 import React, { useContext, useState } from "react";
-import AssetBreadcrumb from "../components/Assets/AssetBreadcrumb";
+import BreadcrumbMenu from "../components/Assets/BreadcrumbMenu";
 import PageSettings from "./Settings/PageSettings";
 import Divider from "@material-ui/core/Divider";
 import { useParams } from "react-router";
 import AppContext from "../store/AppContext/app-context";
+import { productImageAssets } from "../common/Data/MockData";
+import AssetsList from "../components/Assets/AssetsList";
+import FoldersList from "../components/Assets/FoldersList";
+import { CssBaseline } from "@material-ui/core";
+import mClasses from "./AssetExplorer.module.css";
 
 const AssetExplorer = (props) => {
   const appCtx = useContext(AppContext);
@@ -22,12 +27,14 @@ const AssetExplorer = (props) => {
 
   return (
     <PageSettings title="Asset Explorer">
-      <AssetBreadcrumb
+      <BreadcrumbMenu
         menuItems={breadcrumbItems}
         onMenuClick={onMenuClickHandler}
-      ></AssetBreadcrumb>
-      <Divider></Divider>
-      <p>Details goes here</p>
+      />
+      <Divider className={mClasses.divider}></Divider>
+      <FoldersList folders={appCtx.folders}></FoldersList>
+      <div style={{ paddingTop: 50 }}></div>
+      <AssetsList assets={productImageAssets}></AssetsList>
     </PageSettings>
   );
 };

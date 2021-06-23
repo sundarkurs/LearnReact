@@ -3,7 +3,7 @@ import Breadcrumbs from "@material-ui/core/Breadcrumbs";
 import Typography from "@material-ui/core/Typography";
 import Link from "@material-ui/core/Link";
 
-const AssetBreadcrumb = (props) => {
+const BreadcrumbMenu = (props) => {
   const menuItems = props.menuItems;
 
   const elementsList = menuItems.map((item, index) => {
@@ -21,4 +21,4 @@ const AssetBreadcrumb = (props) => {
   return <Breadcrumbs aria-label="breadcrumb">{elementsList}</Breadcrumbs>;
 };
 
-export default AssetBreadcrumb;
+export default BreadcrumbMenu;
