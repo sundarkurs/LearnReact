@@ -26,7 +26,7 @@ const MainLayout = (props) => {
   const classes = useStyles();
   const appCtx = useContext(AppContext);
 
-  const [menuDrawerOpen, setMenuDrawerOpen] = useState(true);
+  const [menuDrawerOpen, setMenuDrawerOpen] = useState(false);
 
   const openMenuDrawerHandler = () => {
     setMenuDrawerOpen(true);
