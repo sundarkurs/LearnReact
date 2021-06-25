@@ -1,0 +1,79 @@
+
+CREATE TABLE Country
+(
+	Id			INT IDENTITY PRIMARY KEY,
+	Iso			CHAR(2) NOT NULL,
+	[Name]		VARCHAR(50) NOT NULL,
+)
+
+CREATE TABLE Language
+(
+	Id			INT IDENTITY PRIMARY KEY,
+	Iso			CHAR(2) NOT NULL,
+	[Name]		VARCHAR(50) NOT NULL,
+)
+
+CREATE TABLE AssetType 
+(
+    AssetTypeId		INT IDENTITY PRIMARY KEY,
+    Code			VARCHAR(255) NOT NULL,
+    Name			VARCHAR(255) NOT NULL,
+    Description		VARCHAR(500)
+);
+
+CREATE TABLE Folder
+(
+	FolderId		INT IDENTITY PRIMARY KEY,
+	Code			VARCHAR(255) NOT NULL,
+	Name			VARCHAR(255) NOT NULL,
+	ParentFolderId	INT,
+	AssetType		INT NOT NULL,
+	UpdatedOn		DATETIME,
+	UpdatedBy		VARCHAR(255) NOT NULL,
+	FOREIGN KEY (ParentFolderId) REFERENCES Folder(FolderId)
+)
+
+CREATE TABLE AssetProductImage
+(
+	AssetId			UNIQUEIDENTIFIER PRIMARY KEY,
+	Name			VARCHAR(255) NOT NULL,
+	SKU				CHAR(10) NOT NULL,
+	Product			VARCHAR(255) NOT NULL,
+	Country			CHAR(2) NOT NULL,
+	Language		CHAR(2) NOT NULL,
+	UpdatedOn		DATETIME NOT NULL,
+	UpdatedBy		VARCHAR(255) NOT NULL
+)
+
+CREATE TABLE AssetProductImageFile
+(
+	FileId			UNIQUEIDENTIFIER PRIMARY KEY,
+	Name			VARCHAR(255) NOT NULL,
+	Size			INT,
+	Version			CHAR(10),
+	Height			INT,
+	Width			INT,
+	IsDefault		BIT,
+	UpdatedOn		DATETIME NOT NULL,
+	UpdatedBy		VARCHAR(255) NOT NULL,
+	AssetId			UNIQUEIDENTIFIER NOT NULL,
+	FOREIGN KEY (AssetId) REFERENCES AssetProductImage(AssetId)
+)
+
+
+CREATE TABLE AssetMaster
+(
+	Id					BIGINT IDENTITY PRIMARY KEY,
+	AssetId				UNIQUEIDENTIFIER NOT NULL,
+	AssetTypeId			INT NOT NULL,
+	Name				VARCHAR(255) NOT NULL,
+	Metadata			NVARCHAR(MAX) NOT NULL,
+	PropertyMetadata	NVARCHAR(MAX) NOT NULL,
+	Country				CHAR(2) NOT NULL,
+	Language			CHAR(2) NOT NULL,
+	UpdatedOn			DATETIME NOT NULL,
+	UpdatedBy			VARCHAR(255) NOT NULL,
+	FOREIGN KEY (AssetTypeId) REFERENCES AssetType(AssetTypeId)
+)
+
+
