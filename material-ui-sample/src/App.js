@@ -1,30 +1,22 @@
-import React, { useContext } from "react";
-import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
-import AuthContext from "./store/AuthContext/auth-context";
-import MainLayout from "./components/Layout/MainLayout";
-import InRoute from "./components/Generic/Routing/InRoute";
-import OutRoute from "./components/Generic/Routing/OutRoute";
-import AppContext from "./store/AppContext/app-context";
+import React from "react";
+import { Grid } from "@material-ui/core";
+import Header from "./Header";
+import Content from "./Content";
 
 const App = () => {
-  const authCtx = useContext(AuthContext);
-  const appCtx = useContext(AppContext);
-
-  const appTheme = createMuiTheme({
-    palette: {
-      type: appCtx.isDarkTheme ? "dark" : "light",
-    },
-  });
-
   return (
-    <ThemeProvider theme={appTheme}>
-      {!authCtx.isLoggedIn && <OutRoute />}
-      {authCtx.isLoggedIn && (
-        <MainLayout>
-          <InRoute />
-        </MainLayout>
-      )}
-    </ThemeProvider>
+    <Grid container direction="column">
+      <Grid item>
+        <Header />
+      </Grid>
+      <Grid item container>
+        <Grid item xs={false} sm={2} />
+        <Grid item xs={12} sm={8}>
+          <Content />
+        </Grid>
+        <Grid item xs={false} sm={2} />
+      </Grid>
+    </Grid>
   );
 };
 
