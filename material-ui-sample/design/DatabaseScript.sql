@@ -1,79 +1,151 @@
+USE DigitalAssets
+
+GO
+
+CREATE TYPE NameType FROM VARCHAR(100)
+
+GO
+
+CREATE TYPE UsernameType FROM VARCHAR(100)
+
+GO
+
+CREATE TYPE IsoType FROM CHAR(2)
+
+GO
+
+CREATE TYPE DescriptionType FROM VARCHAR(500)
+
+GO
+
+CREATE TYPE VersionType FROM CHAR(10)
+
+GO
 
 CREATE TABLE Country
 (
-	Id			INT IDENTITY PRIMARY KEY,
-	Iso			CHAR(2) NOT NULL,
-	[Name]		VARCHAR(50) NOT NULL,
+	Iso			IsoType NOT NULL PRIMARY KEY,
+	Name		NameType NOT NULL,
 )
+
+GO
 
 CREATE TABLE Language
 (
-	Id			INT IDENTITY PRIMARY KEY,
-	Iso			CHAR(2) NOT NULL,
-	[Name]		VARCHAR(50) NOT NULL,
+	Iso			IsoType NOT NULL PRIMARY KEY,
+	Name		NameType NOT NULL,
 )
+
+GO
+
+
 
 CREATE TABLE AssetType 
 (
-    AssetTypeId		INT IDENTITY PRIMARY KEY,
-    Code			VARCHAR(255) NOT NULL,
-    Name			VARCHAR(255) NOT NULL,
-    Description		VARCHAR(500)
-);
+    Id				INT IDENTITY PRIMARY KEY,
+    Code			NameType NOT NULL,
+    Name			NameType NOT NULL,
+    Description		DescriptionType
+)
+
+GO
 
 CREATE TABLE Folder
 (
-	FolderId		INT IDENTITY PRIMARY KEY,
-	Code			VARCHAR(255) NOT NULL,
-	Name			VARCHAR(255) NOT NULL,
-	ParentFolderId	INT,
-	AssetType		INT NOT NULL,
-	UpdatedOn		DATETIME,
-	UpdatedBy		VARCHAR(255) NOT NULL,
-	FOREIGN KEY (ParentFolderId) REFERENCES Folder(FolderId)
+	Id					INT IDENTITY PRIMARY KEY,
+	Code				NameType NOT NULL,
+	Name				NameType NOT NULL,
+	ParentId			INT,
+	AssetType			INT NOT NULL,
+	UpdatedOn			DATETIME,
+	UpdatedBy			UsernameType NOT NULL,
+	FOREIGN KEY (ParentId) REFERENCES Folder(Id),
+	FOREIGN KEY (AssetType) REFERENCES AssetType(Id)
 )
+
+GO
 
 CREATE TABLE AssetProductImage
 (
-	AssetId			UNIQUEIDENTIFIER PRIMARY KEY,
-	Name			VARCHAR(255) NOT NULL,
-	SKU				CHAR(10) NOT NULL,
-	Product			VARCHAR(255) NOT NULL,
-	Country			CHAR(2) NOT NULL,
-	Language		CHAR(2) NOT NULL,
-	UpdatedOn		DATETIME NOT NULL,
-	UpdatedBy		VARCHAR(255) NOT NULL
+	Id					UNIQUEIDENTIFIER PRIMARY KEY,
+	Name				NameType NOT NULL,
+	SKU					CHAR(10) NOT NULL,
+	Product				NameType NOT NULL,
+	CountryCode			IsoType NOT NULL,
+	LanguageCode		IsoType NOT NULL,
+	UpdatedOn			DATETIME NOT NULL,
+	UpdatedBy			UsernameType NOT NULL,
+	FOREIGN KEY(CountryCode) REFERENCES Country(Iso),
+	FOREIGN KEY(LanguageCode) REFERENCES Language(Iso),
 )
+
+GO
 
 CREATE TABLE AssetProductImageFile
 (
-	FileId			UNIQUEIDENTIFIER PRIMARY KEY,
-	Name			VARCHAR(255) NOT NULL,
+	Id				UNIQUEIDENTIFIER PRIMARY KEY,
+	Name			NameType NOT NULL,
 	Size			INT,
-	Version			CHAR(10),
+	Version			VersionType,
 	Height			INT,
 	Width			INT,
 	IsDefault		BIT,
 	UpdatedOn		DATETIME NOT NULL,
-	UpdatedBy		VARCHAR(255) NOT NULL,
+	UpdatedBy		UsernameType NOT NULL,
 	AssetId			UNIQUEIDENTIFIER NOT NULL,
-	FOREIGN KEY (AssetId) REFERENCES AssetProductImage(AssetId)
+	FOREIGN KEY (AssetId) REFERENCES AssetProductImage(Id)
 )
 
+GO
+
+CREATE TABLE AssetImage
+(
+	Id				UNIQUEIDENTIFIER NOT NULL PRIMARY KEY,
+	Name			NameType NOT NULL,
+	Abstract		NVARCHAR(MAX) NULL,
+	CountryCode		IsoType NOT NULL,
+	LanguageCode	IsoType NOT NULL,
+	UpdatedOn		DATETIME NOT NULL,
+	UpdatedBy		UsernameType NOT NULL,
+	FOREIGN KEY(CountryCode) REFERENCES Country(Iso),
+	FOREIGN KEY(LanguageCode) REFERENCES Language(Iso),
+)
+
+GO
+
+CREATE TABLE AssetImageFile
+(
+	Id				UNIQUEIDENTIFIER NOT NULL PRIMARY KEY,
+	Name			NameType NOT NULL,
+	BlobId			UNIQUEIDENTIFIER NOT NULL,
+	Width			INT NOT NULL,
+	Height			INT NOT NULL,
+	Size			INT NOT NULL,
+	Version			VersionType,
+	IsDefault		BIT,
+	UpdatedOn		DATETIME NOT NULL,
+	UpdatedBy		UsernameType NOT NULL,
+	AssetId			UNIQUEIDENTIFIER NOT NULL,
+	FOREIGN KEY (AssetId) REFERENCES AssetImage(Id)
+)
+
+GO
 
 CREATE TABLE AssetMaster
 (
 	Id					BIGINT IDENTITY PRIMARY KEY,
 	AssetId				UNIQUEIDENTIFIER NOT NULL,
 	AssetTypeId			INT NOT NULL,
-	Name				VARCHAR(255) NOT NULL,
+	Name				NameType NOT NULL,
 	Metadata			NVARCHAR(MAX) NOT NULL,
 	PropertyMetadata	NVARCHAR(MAX) NOT NULL,
-	Country				CHAR(2) NOT NULL,
-	Language			CHAR(2) NOT NULL,
+	CountryCode			IsoType NOT NULL,
+	LanguageCode		IsoType NOT NULL,
 	UpdatedOn			DATETIME NOT NULL,
-	UpdatedBy			VARCHAR(255) NOT NULL,
-	FOREIGN KEY (AssetTypeId) REFERENCES AssetType(AssetTypeId)
+	UpdatedBy			UsernameType NOT NULL,
+	FOREIGN KEY (AssetTypeId) REFERENCES AssetType(Id),
+	FOREIGN KEY(CountryCode) REFERENCES Country(Iso),
+	FOREIGN KEY(LanguageCode) REFERENCES Language(Iso),
 )
 
 
